@@ -44,10 +44,10 @@ while 1:
             
         Logging.print_info('done, press "enter" to continue...[black]')
         console.input()
-        continue    
 
     except KeyboardInterrupt:
         break
+
     except Exception as e:
         Logging.console.print_exception()
         Logging.print_info('done, press "enter" to continue...[black]')
