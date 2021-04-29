@@ -9,6 +9,8 @@ import re
 
 from core.database import Database
 
+from lib.logging import Logging
+
 database = Database()
 
 pattern = r'banner tcp (?P<port>\d{1,5}) (?P<host>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) \d+ http (?P<headers>.*)'
@@ -20,8 +22,7 @@ for line in sys.stdin:
         port = match.group('port')
 
         headers = match.group('headers')
-
         headers_lines = headers.split('\\x0d\\x0a')[:-1]
-        print(headers_lines)
 
         database.add_server(host, port, headers_lines)
+        Logging.print_success(f'added {host["ip"]}:{port["port"]} to the database')

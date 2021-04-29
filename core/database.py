@@ -80,9 +80,7 @@ class Database:
             [query]
         )
 
-        results = []
-        for row in self.cursor.fetchall():
-            scan_id, host, port = row
-            results.append((host, port, self.get_lines(scan_id)))
-        
-        return results
+        return [
+            (row[1], row[2], self.get_lines(row[0]))
+            for row in self.cursor.fetchall()
+        ]

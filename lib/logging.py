@@ -20,9 +20,9 @@ class Logging:
 __) |_ | (_|| |(_|(/_ |     | | | | | |(_|_> 
                __|                     __|
 
-    [red]simple Web Internet of Things[/red]
-    [red]coded by dropskid @ github.com/dropsql[/red]
-    [green underline]inspired from dex @ github.com/wybiral/dex[/green underline]
+[red]simple python internet of things search engine[/red]
+[red]coded by dropskid @ github.com/dropsql[/red]
+[green underline]inspired from dex @ github.com/wybiral/dex[/green underline]
 
 [/cyan]         
             '''
