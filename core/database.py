@@ -19,11 +19,11 @@ class Database:
         return query.lower() in text.lower()
 
     def save(self) -> None:
+        """ save the commits """
         self.database.commit()
 
     def init_database(self):
         """ init the database """
-
         queries = [
             'CREATE TABLE IF NOT EXISTS scan    ( time real, host text, port integer );',    # create the table that will contains ip & ports
             'CREATE TABLE IF NOT EXISTS headers ( scan_id integer, line text );',            # create the table that will contains headers
@@ -65,6 +65,7 @@ class Database:
         self.save()
 
     def get_lines(self, scan_id) -> List[str]:
+        """ get the headers from the scan id """
         self.cursor.execute(
             'SELECT line FROM headers WHERE scan_id = ? ORDER BY rowid;', 
             [scan_id]
@@ -73,6 +74,7 @@ class Database:
         return [x[0] for x in self.cursor.fetchall()]
 
     def search_query(self, query: str) -> None:
+        """ search a query into the database """
         self.cursor.execute(
             'SELECT headers.scan_id, scan.host, scan.port FROM headers JOIN scan ON scan.rowid = headers.scan_id WHERE line regexp ? GROUP BY headers.scan_id', 
             [query]
