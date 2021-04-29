@@ -6,16 +6,13 @@ from core.database import Database
 console = Logging.console
 database = Database()
 
-database.cursor.execute('SELECT COUNT(*) FROM scan;')
-count = database.cursor.fetchall()[0][0]
-
 while 1:
 
     try:
         console.clear()
         Logging.print_banner()
         
-        Logging.print_info(f'enter a query to search into Stranger Things IoT\n[green underline]total database rows count:[/green underline] [white]{count}[/white]')
+        Logging.print_info(f'enter a query to search into Stranger Things IoT\n[green underline]total database rows count:[/green underline] [white]{database.get_rows_count()}[/white]')
         query = console.input(' [red][[white]%[/white]][/red][white] ')
 
         results = database.search_query(query)
