@@ -25,4 +25,3 @@ for line in sys.stdin:
         headers_lines = headers.split('\\x0d\\x0a')[:-1]
 
         database.add_server(host, port, headers_lines)
-        Logging.print_success(f'added {host["ip"]}:{port["port"]} to the database')
