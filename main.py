@@ -15,7 +15,12 @@ while 1:
         Logging.print_info(f'enter a query to search into Stranger Things IoT\n[green underline]total database rows count:[/green underline] [white]{database.get_rows_count()}[/white]')
         query = console.input(' [red][[white]%[/white]][/red][white] ')
 
-        results = database.search_query(query)
+        if len(query) <= 2:
+            Logging.print_failed('query must be longer than 2 chars, press "enter" to continue...')
+            console.input()
+            continue
+
+        results = database.search_query(query) # search the query into the sqlite database
 
         if not len(results):
             Logging.print_failed(f'no results found for query: "{query}", press "enter" to continue...[black]')
@@ -24,6 +29,7 @@ while 1:
 
         Logging.print_success(f'{len(results)} results found for query "{query}" !')
 
+        """ here's a little code to make single boxs with multi ips (only if port & headers are the sames) """
         hosts = {
             Hashing.make_headers_hash(port, headers): []
             for _, port, headers in results
@@ -35,6 +41,7 @@ while 1:
         for _hash, reports in hosts.items():
             _hosts = [ip for ip, port, headers in reports]
 
+            """ highlight the query """
             _headers = []
             for line in headers:
                 if query.lower() in line.lower():
@@ -44,6 +51,7 @@ while 1:
                     continue
                 _headers.append(line)
 
+            """ finally generate & print the table """
             table = Logging.render_host_table(
                 '\n'.join(_hosts),
                 str(port),

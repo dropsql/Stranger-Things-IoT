@@ -16,8 +16,8 @@ class Database:
 
     def get_rows_count(self) -> int:
         """ get the number of rows in the database """
-        self.database.cursor.execute('SELECT COUNT(*) FROM scan;')
-        return self.database.cursor.fetchall()[0][0]
+        self.cursor.execute('SELECT COUNT(*) FROM scan;')
+        return self.cursor.fetchall()[0][0]
 
     def regexp(self, query: str, text: str) -> bool:
         """ search function for sqlite """

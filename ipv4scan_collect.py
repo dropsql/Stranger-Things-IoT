@@ -1,5 +1,6 @@
 # ipv4scan -n 500 | python3 ipv4scan_connect.py
 
+import re
 import sys
 import json
 

@@ -28,7 +28,6 @@ __) |_ | (_|| |(_|(/_ |     | | | | | |(_|_>
             '''
         )
 
-
     @staticmethod
     def render_host_table(ip: str, port: int, headers_lines: List[str]) -> Table:
         """ render a table for results """
